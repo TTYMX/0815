@@ -16,13 +16,16 @@
 * git config user.email
 
 ###设置命令
+
 ####所有的操作
 * git config --global user.name 'aaa'
 * git config --global user.email 'youremail@email,com'
 * git config --global push.default
+
 ####一个特定的项目
 * git config user.name 'aaa'
 * git config user.email 'email@email.com'
+
 ###基本命令
 pwd 查看当前所在文件位置
 1. 删除本地分支
