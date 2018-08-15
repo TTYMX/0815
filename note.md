@@ -78,6 +78,9 @@ pwd 查看当前所在文件位置
 * git status 查看文件状态
     > git status -s 缩减的展示
 
-
+* git rm 移出跟踪的文件
+    > git rm README.md<br>
+    git rm --cached README.md
+    
 
 
