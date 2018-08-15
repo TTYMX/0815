@@ -74,7 +74,9 @@ pwd 查看当前所在文件位置
 
 * git add 开始跟踪一个文件
     > eg: git add README.md
-    > nihao
+
+* git status 查看文件状态
+    > git status -s 缩减的展示
 
 
 
