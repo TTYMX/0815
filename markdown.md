@@ -36,16 +36,19 @@
 
 ### 分割线
 分割线可以由*, -, _(星号,减号,底线)表示,但是至少要三个,连续或者不连续都可以,推荐使用减号
-####举例
 
+####举例
 1. ***
 2. ---
 3. ___
 
 ###链接(行内式和参数式)
-
+```
 * 这个是行内式[妙语连珠](http://www.baidu.com)是什么意思
-
+[name]:http://www.baidu.com "名称"
+* 这个是参数式[name],可以多个[name]
+```
+* 这个是行内式[妙语连珠](http://www.baidu.com)是什么意思
 [name]:http://www.baidu.com "名称"
 * 这个是参数式[name],可以多个[name]
 
@@ -53,13 +56,14 @@
 
 
 ###图片 (行内式和参数式)
-
-* 比上面的多个!在前面
-
+```
 * 这个是百度的图片![图片](http:////www.baidu.com/img/bd_logo1.png?where=super)
-
 [百度图片]:http:////www.baidu.com/img/bd_logo1.png?where=super
-
+* 参数图片,![百度图片]
+```
+* 比上面的多个!在前面
+* 这个是百度的图片![图片](http:////www.baidu.com/img/bd_logo1.png?where=super)
+[百度图片]:http:////www.baidu.com/img/bd_logo1.png?where=super
 * 参数图片,![百度图片]
 
 ###代码框
