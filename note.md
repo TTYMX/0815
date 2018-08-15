@@ -82,5 +82,10 @@ pwd 查看当前所在文件位置
     > git rm README.md<br>
     git rm --cached README.md
     
-
+###状态
+ 
+ * ?? 没有追踪的文件
+ * A  已经追踪的文件
+ * 绿M 已经追踪了没有提交过修改的文件
+ * 红M 已经提交了修改的文件
 
