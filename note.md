@@ -1,4 +1,13 @@
 #git常用命令
+
+###需要知道的单词
+* repository  仓库
+* track 跟踪文件
+* storage 暂存
+* remote 远程
+
+
+###创建所需命令
 * git init
 * git add README.md
 * git commit -m "first commit"
@@ -7,36 +16,50 @@
 
 
 ###后续改动
+
 * git add 
 * git commit -m 
 * git push
 
 ###查看命令
+
 * git config user.name
 * git config user.email
+* vim ~/.gitconfig 查看配置文件
+* git config --list 查看配置信息
+* git config <key> 查看某项配置的信息
 
 ###设置命令
 
-####所有的操作
+所有的操作
 * git config --global user.name 'aaa'
 * git config --global user.email 'youremail@email,com'
 * git config --global push.default
 
-####一个特定的项目
-* git config user.name 'aaa'
-* git config user.email 'email@email.com'
+* 一个特定的项目(很少用)
+> 1. git config user.name 'aaa'
+> 2. git config user.email 'email@email.com'
 
 ###基本命令
 
 pwd 查看当前所在文件位置
 1. 删除本地分支
-> git branch -d <BranchName>
+    > git branch -d <BranchName>
 2. 删除远程分支
-> git push origin --delete <BranchName>
+    > git push origin --delete <BranchName>
 3. 查看所有分支
-> git branch -a
+    > git branch -a
+4. 克隆代码
+    > git clone [url] <br>
+    会自动生成.git文件  <br>
+    可以自定义仓库的名字 git clone [url] name
+5. 查看当前文件的状态
+    > git status 
 
+###帮助命令
 
+* git help <verb>config
+* git <verb> --version  可以使用git --查看可以看那些命令
 
 ##详解命令
 * git push origin master 将本地分支的更新推送到远程主机
