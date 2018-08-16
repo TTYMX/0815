@@ -97,3 +97,17 @@ pwd 查看当前所在文件位置
 * git remote -v 显示需要殂谢远程仓库使用的git保存的简写和其对应的url
 * git remote add name url 添加远程仓库
 * git remote rename name new_name 更改远程仓库的名字 
+
+
+###恢复文件内容
+* git checkout filename 恢复文件到上传时候的内容
+
+###分支的处理
+* git branch 查看分支 
+* git branch -a 查看所有的分支 包括远程分支
+* git branch name 创建分支
+* git checkout branch_name 切换分支的名字
+* git branch -D branch_name 删除分支
+* git branch -m name new_name 重命名分支
+
+###合并两个分支
