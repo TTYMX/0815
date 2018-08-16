@@ -91,3 +91,9 @@ pwd 查看当前所在文件位置
  * 结果为空表示很干净了,全部提交了
  * git diff 本身只显示尚未暂存的改动，而不是自上次提交以来所做的所有改动。 所以有时候你一下子暂存了所有更新过的文件后，运行 git diff 后却什么也没有，就是这个原因。
 
+###远程仓库
+* git clone [url]
+* git remote 
+* git remote -v 显示需要殂谢远程仓库使用的git保存的简写和其对应的url
+* git remote add name url 添加远程仓库
+* git remote rename name new_name 更改远程仓库的名字 
