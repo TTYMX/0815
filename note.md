@@ -110,4 +110,14 @@ pwd 查看当前所在文件位置
 * git branch -D branch_name 删除分支
 * git branch -m name new_name 重命名分支
 
-###合并两个分支
+###checkout的应用
+* git checkout filename 恢复到提交的版本
+* git checkout filename 如果本地删除,没有添加,可以恢复出来
+* 文件名字前面显示D表示删除的文件
+
+###删除分段区域的更改
+当执行添加操作的时候,文件将从本地存储库移动到暂存区,如果用户意外修改的文件提交到了暂存区则可以使用git checkout命令恢复其修改
+
+在git中,有一个HEAD指针重视指向最新的提交.如果要从分段区域中撤销更改,则可以使用git checkout 命令, 必须提供一个附加参数, 即HEAD指针. 
+附加的提交指针参数指示git checkout命令重置工作树,并删除分段更改
+
