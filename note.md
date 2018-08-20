@@ -121,9 +121,58 @@ pwd 查看当前所在文件位置
 * 在git中,有一个HEAD指针重视指向最新的提交.如果要从分段区域中撤销更改,则可以使用git checkout 命令, 必须提供一个附加参数, 即HEAD指针. 
 附加的提交指针参数指示git checkout命令重置工作树,并删除分段更改
 
-* __<font color=#ff0000 size=7 face="黑体">已经git add 的如果想要撤销更改,可以使用 git checkout -- filename 会撤销提交的变化,本地的也会删除</font>__
+* __<font color=#ff0000 size=7 face="黑体">
+已经git add 的如果想要撤销更改,
+可以使用 git checkout head -- filename 会撤销提交的变化,本地的也会删除</font>__
 
-###用git复位移动头指针
+### 用git复位移动头指针  git reset
 * 经过少量更改后, 可以决定删除这些改动. git reset命令可以用于复位或恢复更改. 我们可以执行三种不同类型的复位操作
-* --soft选项 每个分支都有一个HEAD指针,他指向最新的提交,如果用--soft选项后跟提交ID的 git reset命令,那么它将重置HEAD指针提交的ID, 
-可以使用git log -1命令验证它
+* --soft选项 每个分支都有一个HEAD指针,他指向最新的提交,如果用--soft选项后跟提交ID的 git reset命令,那么它将重置HEAD指针提交的ID的git reset命令,
+那么他将重置HEAD指针而不会破坏任何东西 
+* .git/refs/heads/master 文件存储HEAD指针的提交ID, 可以使用git log -1命令验证它
+###倒退命令
+* cat .git/refes/heads/master 查看提交版本
+* git log -graph --oneline 查看提交日志
+* git reset --hard HEAD^    git reset可以将master引用指向任意一个村子的提交id(-hard参数会破坏工作区未提交的改动)
+    >注意: 重置命令很危险,因为重置让提交历史也改变了,通过浏览历史不能恢复
+    
+* git提供了一个挽救机制
+    > 显示文件的内容<br>
+        git reflog show master | head -5 将最新的改变放到最前面显示<br>
+        输出中表达式<refname>@{<n>}的含义:引用<refname>之前第<n>次改变时的SHA1哈希值
+   <br>
+        重置master为两次改变之前值:<br>
+        git reset --hard master@{2}
+        
+        
+
+
+###git 命令
+git 有很多优势, 其中之一便是远程操作非常简便. 
+
+* git clone <版本库网址> 
+    >将存储库克隆到新建的目录中, 
+    为克隆的存储库中的每个分支创建远程跟踪分支,
+    并从克隆检出的存储库作为当前活动分支的初始分支
+    <br><br>
+    git clone 支持多种协议, https ssh git 本地文件协议等等
+    <br><br>
+    
+    
+    
+* git remote 
+    >命令管理一组跟踪的存储库
+    <br>
+    <br>git remote [-v | --verbose]
+    <br>git remote add [-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>
+    <br>git remote rename <old> <new>
+    <br>git remote remove <name>
+    <br>git remote set-head <name> (-a | --auto | -d | --delete | <branch>)
+    <br>git remote set-branches [--add] <name> <branch>…​
+    <br>git remote get-url [--push] [--all] <name>
+    <br>git remote set-url [--push] <name> <newurl> [<oldurl>]
+    <br>git remote set-url --add [--push] <name> <newurl>
+    <br>git remote set-url --delete [--push] <name> <url>
+    <br>git remote [-v | --verbose] show [-n] <name>…​
+    <br>git remote prune [-n | --dry-run] <name>…​
+    <br>git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)…​]
