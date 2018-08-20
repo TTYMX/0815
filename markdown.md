@@ -95,3 +95,12 @@
 * 两边跟两个~表示 ~~字体删除~~
 * 转义使用\ 如后面的字符前面都用\<br>
   \\ \* \~
+  
+  
+###字体颜色
+* <font face="黑体">我是黑体字</font>
+* <font face="微软雅黑">我是微软雅黑</font>
+* <font face="STCAIYUN">我是华文彩云</font>
+* <font color=#0099ff size=7 face="黑体">color=#0099ff size=72 face="黑体"</font>
+* <font color=#00ffff size=72>color=#00ffff</font>
+* <font color=gray size=72>color=gray</font>
