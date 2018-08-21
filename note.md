@@ -234,3 +234,31 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     <br>git push origin 当前分支和远程分支存在追踪关系 则本地和远程分支都可以省略
     <br>git push 将当前分支推动到origin主机的对应分支,如果当前分支只有一个追踪分支,那么主机名也可以省略
     <br>git push -u origin master 将本地分支推送到origin主机,同时制定origin为默认主机,后面就可以git push了
+    
+* git config 
+    > 获取并设置存储库或全局选项,这些变量可以控制git的外观和操作的各个方面
+    
+    1.配置文件的存储位置
+    
+        * /etc/gitconfig文件:包含了适用于系统所有用户和所有库的值,如果你传递参数选项 --system 它将明确读写这个文件
+        * ~/ .gitconfig 文件:具体到你的用户,你可以通过传递 --global 选项读写这个文件
+        * .git/config 它里面可以覆盖/etc/gitconfig中的值
+    
+    2.配置用户名或者密码
+    
+        * git config --global user.name 'name'
+        * git config --global user.email 'email'
+    
+    3.配置编辑器
+    
+        * git config --global core.editor.vim
+        * git config --global core.editor   
+     
+    4.配置比较工具
+        
+        * git config --global merge.tool vimdiff
+        * git config --global merge.tool
+        
+    5.检查配置
+    
+        * git config --list
