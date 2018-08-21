@@ -176,3 +176,61 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     <br>git remote [-v | --verbose] show [-n] <name>…​
     <br>git remote prune [-n | --dry-run] <name>…​
     <br>git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)…​]
+
+* git fetch 
+    >命令用于从另一个存储库下载对象和引用
+     <br>git fetch [<options>] [<repository> [<refspec>…]]
+     <br>git fetch [<options>] <group>
+     <br>git fetch --multiple [<options>] [(<repository> | <group>)…]
+     <br>git fetch --all [<options>]
+     <br>
+     从一个或多个其他存储库中获取分支和/或标签(统称为引用)以及完成其历史所必须的对象<br>
+     远程跟踪分支已更新(commit),需要将这些更新取回到本地,这时就要用到git fetche命令
+
+* git pull
+    >命令用于从另一存储库或本地分支获取并集成(整合)<br>
+    git pull 命令的作用是: 取回远程主句某个分支的更新,再与本地的指定分支合并,它的完整格式稍稍有点复杂
+    <br>
+    git pull [options] [<repository> [<refspec>…]]
+    <br>
+    将远程存储库中的更改合并到当前分支中,在默认模式下,git pull是git fetch后跟gitmerge FETCH_HEAD的缩写
+    <br>
+    梗准确地说,git pull是用给定的参数运行git fetch, 并调用git merge将检索到的分支头合并到当前分支中
+    <br><br>
+    实例
+    <br>$ git pull <远程主机名> <远程分支名>:<本地分支名>
+    <br>比如，要取回origin主机的next分支，与本地的master分支合并，需要写成下面这样
+    <br>$ git pull origin next:master
+    <br>如果远程分支(next)要与当前分支合并，则冒号后面的部分可以省略。上面命令可以简写为：
+    <br>$ git pull origin next
+    <br>上面命令表示，取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再执行git merge。
+    <br>$ git fetch origin
+    <br>$ git merge origin/next
+    <br><br>
+    Git也允许手动建立追踪关系。
+    <br>上面命令指定master分支追踪origin/next分支。
+    <br>$ git branch --set-upstream master origin/next
+    <br>如果当前分支与远程分支存在追踪关系，git pull就可以省略远程分支名。
+    <br>$ git pull origin
+    <br><br>
+    git fetch和git pull的区别
+    >>git fetch：相当于是从远程获取最新版本到本地，不会自动合并。
+    <br>在实际使用中，git fetch更安全一些，因为在merge前，我们可以查看更新情况，然后再决定是否合并。
+    
+* git push
+    >命令用于将本地分支的更新推送到远程的主机,他的格式和git pull 相似
+    <br>
+    $ git push <远程主机名> <本地分支名>:<远程分支名>
+    <br>git push [--all | --mirror | --tags] [--follow-tags] [--atomic] [-n | --dry-run] [--receive-pack=<git-receive-pack>]
+    <br>[--repo=<repository>] [-f | --force] [-d | --delete] [--prune] [-v | --verbose]
+    <br>[-u | --set-upstream] [--push-option=<string>]
+    <br>[--[no-]signed|--sign=(true|false|if-asked)]
+    <br>[--force-with-lease[=<refname>[:<expect>]]]
+    <br>[--no-verify] [<repository> [<refspec>…]]
+    <br><br>
+    __示例__
+    <br>git push origin master 将本地分支推送到master上,没有则创建master分支
+    <br>git push origin :master 删除远程master分支 等同于 git push origin --delete master
+    <br>git push origin 当前分支和远程分支存在追踪关系 则本地和远程分支都可以省略
+    <br>git push 将当前分支推动到origin主机的对应分支,如果当前分支只有一个追踪分支,那么主机名也可以省略
+    <br>git push -u origin master 将本地分支推送到origin主机,同时制定origin为默认主机,后面就可以git push了
