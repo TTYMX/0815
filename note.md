@@ -262,3 +262,70 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     5.检查配置
     
         * git config --list
+        
+    6.添加配置项
+        
+        * git config --add site.name yiibai
+        * add 后面的section , key , value 一项都不能少
+        
+    7.删除配置项
+        
+        * git config --local --unset site.name
+        
+    8.获取帮助
+        
+        * git help config 查看git config如何使用
+        * git help config
+        * git config --help
+        * man git-config 不知道为什么使用不成功
+      
+* git help 命令
+    1.解释
+        
+        * 显示有关 git 的帮助信息
+        
+    2.简介
+        
+        * git help [-a|--all] [-g|--guide]
+                   [-i|--info|-m|--man|-w|--web] [COMMAND|GUIDE]
+    
+    3.描述
+    
+        * 没有选项, 没有给出任何命令或指导, git命令的概要和最常用的git命令的列表打印在标准输出上
+        * 如果给出 --all 或者 -a 选项, 则所有可用的命令都将打印在标准输出上
+        * 如果给出了 --guide 或者 -g 选项, 那么在标准输出中也会累出有用的git指南 
+        * 如果给出了命令或者指南, 则会提出该命令或该指南的手册页,
+    
+    4.示例
+        
+        * git help help
+        * git help config
+        * git config --global help.format web
+        * git config help.format
+        * git config --global web.browser firefox
+        * git config web.browser
+        
+* git init 命令
+    
+    1.解释
+    
+        * 创建一个空的git长裤或者重新初始化一个现有的仓库
+    
+    2.简介
+    
+        *  git init [-q | --quiet] [--bare] [--template=<template_directory>]
+                 [--separate-git-dir <git dir>]
+                 [--shared[=<permissions>]] [directory]
+                 
+    3.描述
+        
+        * 该命令是床架一个空的git仓库--基本上是一个具有objects, refs/head, refs/tabs和模板文件的.git目录. 还创建了引用主分支的HEAD和
+        初始化的一个HEAD文件
+        * 如果通过$GIT_OBJECT_DIRECTORY环境变量指定了对象存储目录,那么将在下面创建 sha1 目录, 否则将使用默认的 $GIT_DIR/objects目录
+        * 现有存储库中运行 git init 命令是安全的. 它不会覆盖已经存在的东西. 重新运行 git init 的主要原因是拾取新添加的模板(或者如果给出了
+        --separate-git-dir , 则将存储库移动到另一个地方)
+        
+    4.示例
+    
+        * git init 
+           
