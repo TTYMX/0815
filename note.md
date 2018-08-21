@@ -236,43 +236,84 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     <br>git push -u origin master 将本地分支推送到origin主机,同时制定origin为默认主机,后面就可以git push了
     
 * git config 
-    > 获取并设置存储库或全局选项,这些变量可以控制git的外观和操作的各个方面
+
+    1.解释
+        
+        * 获取并设置存储库或全局选项, 这些变量可以控制 git 的外观和操作的各个方面
     
-    1.配置文件的存储位置
+    2.语法简介
+        
+        * git config [<file-option>] [type] [--show-origin] [-z|--null] name [value [value_regex]]
+          git config [<file-option>] [type] --add name value
+          git config [<file-option>] [type] --replace-all name value [value_regex]
+          git config [<file-option>] [type] [--show-origin] [-z|--null] --get name [value_regex]
+          git config [<file-option>] [type] [--show-origin] [-z|--null] --get-all name [value_regex]
+          git config [<file-option>] [type] [--show-origin] [-z|--null] [--name-only] --get-regexp name_regex [value_regex]
+          git config [<file-option>] [type] [-z|--null] --get-urlmatch name URL
+          git config [<file-option>] --unset name [value_regex]
+          git config [<file-option>] --unset-all name [value_regex]
+          git config [<file-option>] --rename-section old_name new_name
+          git config [<file-option>] --remove-section name
+          git config [<file-option>] [--show-origin] [-z|--null] [--name-only] -l | --list
+          git config [<file-option>] --get-color name [default]
+          git config [<file-option>] --get-colorbool name [stdout-is-tty]
+          git config [<file-option>] -e | --edit
+    
+    3.描述
+        
+        * 可以使用次命令 查询/ 设置/ 替换/ 取消 设置选项, 该名称实际上是由 . 分割键, 该值将被转义
+        * 可以使用 --add 选项将多行添加到选项, 如果要更新或者取消设置多行可能出现的选项则需要给出POSIX正则表达式 value_regex. 只有与正则
+          表达式匹配的现有值或已更新或未设置. 如果要处理与正则表达式不匹配的行, 只需要在前面添加一个感叹号 ! 
+        * 类型说明符可以是 --int 或 --bool, 以使 git config 确保变量是给定类型, 并将该值转化为规范形式, int 是简单十进制数, "true" 或
+          "false" 是 bool字符串表示, 或者 --path, 它进行一些路径扩展, 如果没有类型说明符传递, 则不会对该值执行检查或者转换. 
+        * 读取时, 默认情况下是从系统, 全局和存储库本地配置文件读取这些值, 而选项 --system, --global, --local, --file filename 可用于
+          告知命令读取和设置的位置
+        * 写入时, 默认情况下是将新值写入存储库本地配置(--local)文件, 并且可使用选项 --system, --global, --file filename 来告诉命令写
+          入的位置, 成功时命令返回退出代码是0, 如果非零表示命令失败
+          部分或键无效(ret = 1)，
+          没有提供部分或名称(ret = 2)，
+          配置文件无效(ret = 3)，
+          配置文件无法写入(ret = 4)，
+          尝试取消设置不存在的选项(ret = 5)，
+          尝试取消设置/设置多个行匹配的选项(ret = 5)
+          尝试使用无效的正则表达式(ret = 6)。
+        
+    4.配置文件的存储位置
     
         * /etc/gitconfig文件:包含了适用于系统所有用户和所有库的值,如果你传递参数选项 --system 它将明确读写这个文件
         * ~/ .gitconfig 文件:具体到你的用户,你可以通过传递 --global 选项读写这个文件
         * .git/config 它里面可以覆盖/etc/gitconfig中的值
     
-    2.配置用户名或者密码
+    5.配置用户名或者密码
     
         * git config --global user.name 'name'
         * git config --global user.email 'email'
+        * 如果要配置某个特定的项目去除掉 --global 即可
     
-    3.配置编辑器
+    6.配置编辑器
     
         * git config --global core.editor.vim
         * git config --global core.editor   
      
-    4.配置比较工具
+    7.配置比较工具
         
         * git config --global merge.tool vimdiff
         * git config --global merge.tool
         
-    5.检查配置
+    8.检查配置
     
         * git config --list
         
-    6.添加配置项
+    9.添加配置项
         
         * git config --add site.name yiibai
         * add 后面的section , key , value 一项都不能少
         
-    7.删除配置项
+    10.删除配置项
         
         * git config --local --unset site.name
         
-    8.获取帮助
+    11.获取帮助
         
         * git help config 查看git config如何使用
         * git help config
@@ -280,6 +321,7 @@ git 有很多优势, 其中之一便是远程操作非常简便.
         * man git-config 不知道为什么使用不成功
       
 * git help 命令
+
     1.解释
         
         * 显示有关 git 的帮助信息
@@ -320,10 +362,10 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     3.描述
         
         * 该命令是床架一个空的git仓库--基本上是一个具有objects, refs/head, refs/tabs和模板文件的.git目录. 还创建了引用主分支的HEAD和
-        初始化的一个HEAD文件
+          初始化的一个HEAD文件
         * 如果通过$GIT_OBJECT_DIRECTORY环境变量指定了对象存储目录,那么将在下面创建 sha1 目录, 否则将使用默认的 $GIT_DIR/objects目录
         * 现有存储库中运行 git init 命令是安全的. 它不会覆盖已经存在的东西. 重新运行 git init 的主要原因是拾取新添加的模板(或者如果给出了
-        --separate-git-dir , 则将存储库移动到另一个地方)
+          --separate-git-dir , 则将存储库移动到另一个地方)
         
     4.示例
     
