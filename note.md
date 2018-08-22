@@ -150,13 +150,62 @@ pwd 查看当前所在文件位置
 ###git 命令
 git 有很多优势, 其中之一便是远程操作非常简便. 
 
-* git clone <版本库网址> 
-    >将存储库克隆到新建的目录中, 
-    为克隆的存储库中的每个分支创建远程跟踪分支,
-    并从克隆检出的存储库作为当前活动分支的初始分支
-    <br><br>
-    git clone 支持多种协议, https ssh git 本地文件协议等等
-    <br><br>
+* git clone 
+    
+    1.解释
+        
+        * 将存储库可控到新目录中
+    
+    2.简介
+        
+        * git clone [--template=<template_directory>]
+                [-l] [-s] [--no-hardlinks] [-q] [-n] [--bare] [--mirror]
+                [-o <name>] [-b <name>] [-u <upload-pack>] [--reference <repository>]
+                [--dissociate] [--separate-git-dir <git dir>]
+                [--depth <depth>] [--[no-]single-branch]
+                [--recurse-submodules] [--[no-]shallow-submodules]
+                [--jobs <n>] [--] <repository> [<directory>]
+    
+    3.描述
+        
+        * 将存储库克隆到新创建的目录中, 为克隆的存储库中的每个分支创建远程跟踪分支(使用 git branch -r 可见), 并从克隆检出存储库作为当前活
+          动的初始分支
+        * 在克隆之后, 没有参数的普通的 git 提取将更新所有远程跟踪分支, 并且没有参数的 git pull 将会把远程分支合并到当前的分支(如果存在)
+        * 此默认配置通常在 refs/remotes/origin 下创建远程分支头的引用, 并通过初始化 remoote.origin.url 和 remote.origin.fetch 配置
+          变量来实现
+        * 执行远程操作的第一步, 通常是从远程主机克隆一个版本库,这时就要用到 git clone 命令: git clone 版本库网址; 例如克隆 jquery 的版
+          本库: git clone http://github.com/jquery/jquery.git
+        * 该命令会在本地主机生成一个目录, 与远程主机的版本库同名. 如果要指定不同的目录名, 可以将目录名作为 git clone 命令的第二个参数, 
+          例如: git clone 版本库网址 本地目录名
+        * git clone 支持多种协议, 有 https ssh git 本地文件协议
+    
+    3.示例
+        
+        * git clone https://example.com/path/to/repo.git
+        * git clone http://git.oschina.net/yiibai/sample.git
+        * git clone ssh://example.com/path/to/repo.git
+        * git clone git://example.com/path/to/repo.git
+        * git clone /opt/git/project.git
+        * git clone file:///ope/git/project.git
+        * git clone ftps://example.com/path/to/repo.git
+        * git clone rsync://example.com/path/to/repo.git
+        * git clone [user@]example.com:path/to/repo.git
+       
+    4.应用场景示例
+    
+        * 从上游克隆下来 git clone 路径 mydir
+        * 从当前目录中使用克隆 git clone -l -s -n . ../copy
+        * 从现有的本地目录借用从上游克隆 git clone --reference /git/linux.git 路径 mydir
+        * 创建一个裸存储库将更改发布给公众 git clone --bare -l /home/proj/.git /pub/scm/pro.git
+        
+     
+                
+           
+        
+        
+        
+ 
+   
     
     
     
@@ -412,4 +461,43 @@ git 有很多优势, 其中之一便是远程操作非常简便.
         * git add -u path 将跟踪的文件中修改或删除的文件添加到索引库 省略 path 表示 .
         * git add -A path 将所有的文件添加到索引库 省略 path 表示 . 
         * git add -i 查看所有修改或已经删除文件但是没有提交的文件, 通过 revert 子命令可以看 path 中为跟踪的文件
+
+* git status
+
+    1.解释
+        
+        * 用于显示工作目录和暂存区的状态. 使用此命令能看到哪些修改被暂存到了, 哪些没有, 哪些文件没有被 git tracked 到. git status 不显示
+          已经 commit 到醒目历史中去的信息. 看项目历史信息要使用 git log
+    
+    2.简介
+    
+        * git status [<options>…​] [--] [<pathspec>…​]
+    
+    3.描述   
+        
+        * 显示索引文件和当前HEAD提交之间的差异, 在工作树和索引文件之间有差异的路径以及工作树中没有被 git 跟踪的路径. 
+        * 没有 tracked 的文件分为两类, 1,已经放在工作目录没有 git add 的; 2, 编译的程序文件 例如: .pyc .obj .exe
+        * 在项目的根目录下有 .gitignore 文件, 其中加入下面的内容能阻止文件出现在 git status 中 *.pyc *.tmp
+        * 每次在 git commit 之前使用 git status 检查文件状态是个好习惯
   
+    
+    
+* git status
+
+    1.解释
+        
+        * 用于显示工作目录和暂存区的状态. 使用此命令能看到哪些修改被暂存到了, 哪些没有, 哪些文件没有被 git tracked 到. git status 不显示
+          已经 commit 到醒目历史中去的信息. 看项目历史信息要使用 git log
+    
+    2.简介
+    
+        * git status [<options>…​] [--] [<pathspec>…​]
+    
+    3.描述    
+         
+        
+        
+        
+        
+        
+        
