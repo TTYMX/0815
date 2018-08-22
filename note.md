@@ -479,25 +479,8 @@ git 有很多优势, 其中之一便是远程操作非常简便.
         * 没有 tracked 的文件分为两类, 1,已经放在工作目录没有 git add 的; 2, 编译的程序文件 例如: .pyc .obj .exe
         * 在项目的根目录下有 .gitignore 文件, 其中加入下面的内容能阻止文件出现在 git status 中 *.pyc *.tmp
         * 每次在 git commit 之前使用 git status 检查文件状态是个好习惯
-  
+        * git status -uno 可以只显示已经被 git 管理的并且被修改但没有提交的文件
     
     
-* git status
 
-    1.解释
-        
-        * 用于显示工作目录和暂存区的状态. 使用此命令能看到哪些修改被暂存到了, 哪些没有, 哪些文件没有被 git tracked 到. git status 不显示
-          已经 commit 到醒目历史中去的信息. 看项目历史信息要使用 git log
-    
-    2.简介
-    
-        * git status [<options>…​] [--] [<pathspec>…​]
-    
-    3.描述    
-         
-        
-        
-        
-        
-        
-        
+     
