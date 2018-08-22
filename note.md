@@ -370,4 +370,46 @@ git 有很多优势, 其中之一便是远程操作非常简便.
     4.示例
     
         * git init 
+        
+* git add
+
+    1.解释
+        
+        * 将文件内容添加到索引(将修改添加到暂存区). 也就是将要提交的文件的信息添加到索引库中
+        
+    2.简介
+         
+        * git add [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
+                [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]]
+                [--intent-to-add | -N] [--refresh] [--ignore-errors] [--ignore-missing]
+                [--chmod=(+|-)x] [--] [<pathspec>…​]
+          
+    3.描述
+        
+        * 此命令将要提交的文件的信息添加到索引库中(将修改添加到暂存区), 以准备下一次提交分段的内容. 它通常将现有路径的当前内容作为一个整体添加,
+          但是通过一些选项, 它可以用户添加内容, 只对所应用的工作树文件进行一些更改,或删除工作树中不存在的路径
+        * "索引"保存工作树内容的快照, 并且将该快照作为下一个提交的内容. 因此, 在对工作树进行任何更改之后, 并且在 git commit 命令之前, 必须
+          使用 git add 命令将任何新的修改的文件添加到索引
+        * 该命令可以在提交之前多次执行. 它只在运行 git add 命令时添加指定文件的内容; 如果希望随后的更改包含在下一个提交中, 那么必须要再次运行
+          git add 将新内容添加到索引
+        * git status 命令可用于获取哪些文件具有为下一次提交分段的更改的摘要.
+        * 默认情况下, git add 命令不会添加忽略的文件. 如果在命令行上显示指定了任何忽略的文件, git add 命令都将失败, 并显示一个忽略的文件列表.
+          由git执行的目录递归或者文件名遍历所导致的忽略文件都将被默认忽略. git add 命令可以用 -f(force) 选型添加被忽略的文件
            
+    4.示例
+        
+        * git add documentation/*.txt 添加documentation目录以及其子目录下的所有的*.txt内容
+    
+    5.基本用法
+    
+        * git add path
+        * 这个命令可以把 path 中的文件添加到索引库中, path 可以是文件也可以是目录. git 不仅可以判断出修改的文件, 还可以判断出添加的文件, 
+          但是不能判断出删除的文件
+        * git add . 将所有的修改添加的暂存区
+        * git add *Controller 将以 Controller 结尾的文件添加
+        * git add Hello* 将以 Hello 开头的文件添加
+        * git add Hello? 将 Hello1.txt添加 Hello12.txt, Hello.txt 不会添加
+        * git add -u path 将跟踪的文件中修改或删除的文件添加到索引库 省略 path 表示 .
+        * git add -A path 将所有的文件添加到索引库 省略 path 表示 . 
+        * git add -i 查看所有修改或已经删除文件但是没有提交的文件, 通过 revert 子命令可以看 path 中为跟踪的文件
+  
